@@ -63,4 +63,18 @@ app.get('/publications', function (req, res) {
     })
 })
 
+app.get('/backEnd', function (req, res) {
+  request
+    .get('http://' + backendHost + ':3000/ip')
+    .end(function (err, data) {
+      console.log(data.body)
+      if (data.status == 403) {
+        res.send(403, '403 Forbidden');
+      } else {
+        var ips = data.body;
+        res.render('backEnd', { ips: ips });
+      }
+    })
+})
+
 app.listen(3030);
