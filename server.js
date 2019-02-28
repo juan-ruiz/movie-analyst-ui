@@ -1,6 +1,7 @@
 // Declare our dependencies
 const express = require('express');
 const request = require('superagent');
+const http = require('http');
 
 require('dotenv').config()
 
@@ -73,6 +74,21 @@ app.get('/backEnd', function (req, res) {
       } else {
         var ips = data.body;
         res.render('backEnd', { ips: ips });
+      }
+    })
+})
+
+
+app.get('/frontEnd', function (req, res) {
+  request
+    .get('http://169.254.169.254/latest/meta-data/local-hostname')
+    .end(function (err, data) {
+      if (err) {
+        let ips = err.message;
+        res.render('frontEnd', { ips: ips });
+      } else {
+        let ips = data.body;
+        res.render('frontEnd', { ips: ips });
       }
     })
 })
