@@ -87,7 +87,7 @@ app.get('/frontEnd', function (req, res) {
         let ips = err.message;
         res.render('frontEnd', { ips: ips });
       } else {
-        let ips = data.body;
+        let ips = data.text;
         res.render('frontEnd', { ips: ips });
       }
     })
