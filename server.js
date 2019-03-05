@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
 // Once the request is sent out, our API will validate that the access_token has the right scope to request the /movies resource and if it does, will return the movie data. We’ll take this movie data, and pass it alongside our movies.ejs template for rendering
 app.get('/movies', function (req, res) {
   request
-    .get('http://' + backendHost + ':3000/movies')
+    .get(backendHost + '/movies')
     .end(function (err, data) {
       if (data.status == 403) {
         res.send(403, '403 Forbidden');
@@ -39,7 +39,7 @@ app.get('/movies', function (req, res) {
 // The key difference on the authors route, is that for our client, we’re naming the route /authors, but our API endpoint is /reviewers. Our route on the client does not have to match the API endpoint route.
 app.get('/authors', function (req, res) {
   request
-    .get('http://' + backendHost + ':3000/reviewers')
+    .get(backendHost + '/reviewers')
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function (err, data) {
       if (data.status == 403) {
@@ -53,7 +53,7 @@ app.get('/authors', function (req, res) {
 
 app.get('/publications', function (req, res) {
   request
-    .get('http://' + backendHost + ':3000/publications')
+    .get(backendHost + '/publications')
     .end(function (err, data) {
       if (data.status == 403) {
         res.send(403, '403 Forbidden');
@@ -66,7 +66,7 @@ app.get('/publications', function (req, res) {
 
 app.get('/backEnd', function (req, res) {
   request
-    .get('http://' + backendHost + ':3000/ip')
+    .get(backendHost + '/ip')
     .end(function (err, data) {
       console.log(data.body)
       if (data.status == 403) {
