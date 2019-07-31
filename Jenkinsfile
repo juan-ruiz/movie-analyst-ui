@@ -23,7 +23,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh '-------------------echo setting up google cloud ------------------'
+                sh 'echo setting up google cloud ------------------'
                  sh """
         	        #!/bin/bash 
         	        curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-231.0.0-linux-x86_64.tar.gz;
@@ -40,6 +40,9 @@ pipeline {
                 sh 'docker tag movie-analyst-ui:${env.BUILD_NUMBER} gcr.io/ramp-up-247818/movie-analyst-ui:latest'
                 sh 'gcloud docker -- push  gcr.io/ramp-up-247818/movie-analyst-ui:${env.BUILD_NUMBER}'
                 sh 'gcloud docker -- push  gcr.io/ramp-up-247818/movie-analyst-ui:latest'
+                sh 'docker rmi movie-analyst-ui:latest'
+                sh 'docker rmi movie-analyst-ui:${env.BUILD_NUMBER}'
+
 
 
             }
