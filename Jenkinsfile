@@ -4,12 +4,10 @@ pipeline {
     }
     environment {
         GOOGLE_PROJECT_ID = 'ramp-up-247818';
-        
-         GOOGLE_SERVICE_ACCOUNT_KEY = credentials('JENKINS_SERVICE_ACCOUNT');
-    }
-    environment {
+        GOOGLE_SERVICE_ACCOUNT_KEY = credentials('JENKINS_SERVICE_ACCOUNT');
         HOME = '.'
     }
+   
     stages {
         stage('build') {
             steps {
