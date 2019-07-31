@@ -23,8 +23,9 @@ pipeline {
             steps {
                 sh 'echo ------------------setting up google cloud ------------------'
                  sh """
-        	        #!/bin/bash 
-        	        /usr/bin/curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-231.0.0-linux-x86_64.tar.gz;
+        	        #!/bin/bash
+                    apk add curl
+        	        curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-231.0.0-linux-x86_64.tar.gz;
                     tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/;
 		            /tmp/google-cloud-sdk/install.sh -q;
                     source /tmp/google-cloud-sdk/path.bash.inc;
