@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'centos:7' }
+        docker { image 'node:8-jessie-slim' }
     }
     environment {
         GOOGLE_PROJECT_ID = 'ramp-up-247818';
