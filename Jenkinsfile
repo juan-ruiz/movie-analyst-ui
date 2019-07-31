@@ -38,8 +38,8 @@ pipeline {
                 sh 'docker tag movie-analyst-ui:${env.BUILD_NUMBER} gcr.io/ramp-up-247818/movie-analyst-ui:latest'
                 sh 'gcloud docker -- push  gcr.io/ramp-up-247818/movie-analyst-ui:${env.BUILD_NUMBER}'
                 sh 'gcloud docker -- push  gcr.io/ramp-up-247818/movie-analyst-ui:latest'
-
-
+                sh 'docker rmi  gcr.io/ramp-up-247818/movie-analyst-ui:${env.BUILD_NUMBER}'
+                sh 'docker rmi  gcr.io/ramp-up-247818/movie-analyst-ui:latest'
             }
         }
     }
