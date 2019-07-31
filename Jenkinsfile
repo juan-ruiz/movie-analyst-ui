@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     environment {
         GOOGLE_PROJECT_ID = 'ramp-up-247818';
         GOOGLE_SERVICE_ACCOUNT_KEY = credentials('JENKINS_SERVICE_ACCOUNT');
@@ -8,23 +8,16 @@ pipeline {
    
     stages {
         stage('build') {
-                agent {
-                    docker { image 'node:8-jessie-slim' }
-                }
             steps {
                 sh 'npm install'
             }
         }
         stage('test') {
-                agent {
-                    docker { image 'node:8-jessie-slim' }
-                }
             steps {
                 sh 'npm test'
             }
         }
         stage('deploy') {
-            agent any
             steps {
                 sh 'echo ------------------setting up google cloud ------------------'
                  sh """
