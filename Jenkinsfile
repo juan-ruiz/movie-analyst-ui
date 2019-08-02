@@ -28,6 +28,8 @@ pipeline {
                     source /tmp/google-cloud-sdk/path.bash.inc;
 			        gcloud config set project ${GOOGLE_PROJECT_ID};
 			        gcloud components install kubectl;
+                    PATH=$PATH:/tmp/google-cloud-sdk/bin
+                    [[ ":$PATH:" != *":/tmp/google-cloud-sdk/bin:"* ]] && PATH="/tmp/google-cloud-sdk/bin:${PATH}"
 			        gcloud auth activate-service-account --key-file ${GOOGLE_SERVICE_ACCOUNT_KEY};
                     """
                 sh 'echo -------------------Account configured ------------------'
