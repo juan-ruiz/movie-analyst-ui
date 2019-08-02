@@ -46,7 +46,7 @@ pipeline {
                 sh  """   
                 #!/bin/bash 
                 gcloud container clusters get-credentials gke-cluster-ea11e6b4 --zone us-east1-b;
-                /tmp/google-sdk/bin/kubectl
+                /tmp/google-cloud-sdk/bin/kubectl
                 #kubectl set image deployment.apps/movie-analyst-ui movie-analyst-ui=gcr.io/ramp-up-247818/movie-analyst-ui:latest;
                 """
             }
