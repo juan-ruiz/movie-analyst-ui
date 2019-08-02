@@ -34,7 +34,6 @@ pipeline {
                     echo $PATH
 			        gcloud auth activate-service-account --key-file ${GOOGLE_SERVICE_ACCOUNT_KEY};
                     gcloud components update
-                    ln /tmp/google-cloud-sdk/bin/kubectl /usr/local/bin/kubectl
                     """
                 sh 'echo -------------------Account configured ------------------'
                 sh '/usr/bin/curl -o /tmp/front-dockerfile/dockerfile https://raw.githubusercontent.com/Danielperga97/myDevopsRampUp/develop/containers/backend/dockerfile'
