@@ -25,15 +25,14 @@ pipeline {
         	        curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-231.0.0-linux-x86_64.tar.gz;
                     tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/;
 		            /tmp/google-cloud-sdk/install.sh -q;
-                    source /tmp/google-cloud-sdk/path.bash.inc;
 			        gcloud config set project ${GOOGLE_PROJECT_ID};
 			        gcloud components install kubectl;
+                    source /tmp/google-cloud-sdk/path.bash.inc;
                     PATH=$PATH:/tmp/google-cloud-sdk/bin
                     [[ ":$PATH:" != *":/tmp/google-cloud-sdk/bin:"* ]] && PATH="/tmp/google-cloud-sdk/bin:${PATH}"
                     echo $PATH
 			        gcloud auth activate-service-account --key-file ${GOOGLE_SERVICE_ACCOUNT_KEY};
                     gcloud components update
-                    ln /tmp/google-cloud-sdk/bin/kubectl /usr/local/bin/kubectl
                     """
                 sh 'echo -------------------Account configured ------------------'
                 sh '/usr/bin/curl -o /tmp/front-dockerfile/dockerfile https://raw.githubusercontent.com/Danielperga97/myDevopsRampUp/develop/containers/backend/dockerfile'
