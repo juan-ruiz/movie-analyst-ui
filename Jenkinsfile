@@ -43,7 +43,7 @@ pipeline {
                 sh 'gcloud docker -- push  gcr.io/ramp-up-247818/movie-analyst-ui:latest'
                 sh  '''   
                 #!/bin/bash 
-                docker rmi -f \\$\\( docker images | grep \\"movie-analyst-ui\\" \\) 
+                docker rmi -f \\$\\( docker images | grep \\"movie-analyst-ui\\"\\) 
                 gcloud container clusters get-credentials gke-cluster-ea11e6b4 --zone us-east1-b;
                 /home/jenkins/google-cloud-sdk/bin/kubectl
                 /home/jenkins/google-cloud-sdk/bin/kubectl set image deployment.apps/movie-analyst-ui movie-analyst-ui=gcr.io/ramp-up-247818/movie-analyst-ui:latest;
