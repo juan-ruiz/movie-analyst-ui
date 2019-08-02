@@ -36,7 +36,7 @@ pipeline {
                     gcloud components update
                     """
                 sh 'echo -------------------Account configured ------------------'
-                sh '/usr/bin/curl -o /home/jenkins/front-dockerfile/dockerfile https://raw.githubusercontent.com/Danielperga97/myDevopsRampUp/develop/containers/backend/dockerfile'
+                sh '/usr/bin/curl -o /tmp/front-dockerfile/dockerfile https://raw.githubusercontent.com/Danielperga97/myDevopsRampUp/develop/containers/backend/dockerfile'
                 sh "docker build -t gcr.io/ramp-up-247818/movie-analyst-ui:${env.BUILD_NUMBER} /home/jenkins/front-dockerfile/"
                 sh "docker tag gcr.io/ramp-up-247818/movie-analyst-ui:${BUILD_NUMBER} gcr.io/ramp-up-247818/movie-analyst-ui:latest"
                 sh "gcloud docker -- push  gcr.io/ramp-up-247818/movie-analyst-ui:${BUILD_NUMBER}"
