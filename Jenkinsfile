@@ -32,6 +32,7 @@ pipeline {
                     [[ ":$PATH:" != *":/tmp/google-cloud-sdk/bin:"* ]] && PATH="/tmp/google-cloud-sdk/bin:${PATH}"
                     echo $PATH
 			        gcloud auth activate-service-account --key-file ${GOOGLE_SERVICE_ACCOUNT_KEY};
+                    gcloud components update
                     """
                 sh 'echo -------------------Account configured ------------------'
                 sh '/usr/bin/curl -o /tmp/front-dockerfile/dockerfile https://raw.githubusercontent.com/Danielperga97/myDevopsRampUp/develop/containers/backend/dockerfile'
@@ -44,6 +45,7 @@ pipeline {
                 sh  """   
                 #!/bin/bash 
                 gcloud container clusters get-credentials gke-cluster-ea11e6b4 --zone us-east1-b;
+                kubectl
                 kubectl set image deployment.apps/movie-analyst-ui movie-analyst-ui=gcr.io/ramp-up-247818/movie-analyst-ui:latest;
                 """
             }
