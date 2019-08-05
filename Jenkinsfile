@@ -44,7 +44,7 @@ pipeline {
                 sh 'gcloud docker -- push  gcr.io/ramp-up-247818/movie-analyst-ui:latest'
                 sh  '''   
                 #!/bin/bash 
-                docker system prune -a
+                docker system prune -a -f;
                 gcloud container clusters get-credentials gke-cluster-1 --zone us-east1-b;
                 /home/jenkins/google-cloud-sdk/bin/kubectl set image deployment.apps/movie-analyst-ui movie-analyst-ui=gcr.io/ramp-up-247818/movie-analyst-ui:${BUILD_NUMBER}
                 '''
