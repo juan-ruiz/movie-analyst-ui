@@ -20,6 +20,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sh 'echo ------------------setting up google cloud ------------------'
+
                  sh """
         	        #!/bin/bash
         	        curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-231.0.0-linux-x86_64.tar.gz;
@@ -47,6 +48,7 @@ pipeline {
                 gcloud container clusters get-credentials gke-cluster-ea11e6b4 --zone us-east1-b;
                 /home/jenkins/google-cloud-sdk/bin/kubectl set image deployment.apps/movie-analyst-ui movie-analyst-ui=gcr.io/ramp-up-247818/movie-analyst-ui:latest;
                 '''
+
             }
         }
     }
