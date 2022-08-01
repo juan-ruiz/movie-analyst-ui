@@ -1,7 +1,7 @@
 // Declare our dependencies
 var express = require('express');
 var request = require('superagent');
-var backendHost = '10.0.0.103';
+var backendHost = '10.0.0.4';
 // Create our express app
 var app = express();
 
