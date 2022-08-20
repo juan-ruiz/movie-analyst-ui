@@ -1,9 +1,10 @@
 #!/bin/bash
+cd /home/ubuntu
+sudo apt-get update
 sudo apt-get -y install git
-git clone https://github.com/juan-ruiz/movie-analyst-ui.git
+git clone https://github.com/joanroamora/movie-analyst-ui.git
 sudo apt-get -y install nodejs
 sudo apt-get -y install npm
-cd /home/vagrant/data
 wait
 cd movie-analyst-ui
 npm config set strict-ssl false
